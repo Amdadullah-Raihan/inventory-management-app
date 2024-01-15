@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false, // Change to false to disallow JavaScript files
+    "skipLibCheck": true,
+    "strict": true, // Set to true for stricter type checking
+    "noEmit": false, // Set to false if you want TypeScript to generate output
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // Change to "react" if you are using React JSX
+    "baseUrl": "./", // Add baseUrl for path mapping
+    "paths": {
+      "@/app/*": ["app/*"],
+      "@/public/*": ["public/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript",
+        "allowNamespaces": true
+      },
+      {
+        "name": "typescript-tslint-plugin"
+      },
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "app/context/AuthContext.tsxx", // Update file extension to .ts
+    "app/layout.tsx", // Update file extension to .tsx
+    "app/components/Invoice/Preview/InvoicePreview.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

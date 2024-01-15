@@ -162,7 +162,7 @@ const Invoice = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="table"
+                className="table table-xs"
               >
                 <thead className="bg-base-200 dark:bg-secondary dark:text-white">
                   <tr>

@@ -177,7 +177,7 @@ const Products = () => {
               />
             </div>
           ) : (
-            <div>
+            <div className="overflow-x-auto">
               <motion.table
                 initial="hidden"
                 animate="visible"

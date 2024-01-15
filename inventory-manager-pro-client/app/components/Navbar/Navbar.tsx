@@ -1,50 +1,23 @@
-"use client";
-
-//external imports
-import React, { useEffect, useState } from "react";
+// external imports
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaCircleUser,
-  FaFileInvoice,
-  FaGear,
-  FaMagnifyingGlass,
-  FaMobileScreenButton,
-  FaMoon,
-  FaPlus,
-  FaRightFromBracket,
-  FaSun,
-  FaSunPlantWilt,
-  FaUser,
-} from "react-icons/fa6";
-import {
-  BsBagCheckFill,
-  BsMoon,
-  BsMoonStars,
-  BsSearch,
-  BsSun,
-} from "react-icons/bs";
-import { HiOutlineDocument, HiOutlineDocumentPlus } from "react-icons/hi2";
-import { GrSettingsOption } from "react-icons/gr";
-import { TbMoonStars, TbShoppingBagPlus } from "react-icons/tb";
+import { BsSun } from "react-icons/bs";
 
-//internal imports
-import logo from "../../assests/logo/cn-computer-logo-removebg-preview.png";
-import useFirebase from "@/app/hooks/useFirebase";
+// internal imports
 import { useAuth } from "../../context/AuthContext";
-import {
-  AiOutlineMenu,
-  AiOutlineMenuFold,
-  AiOutlineMenuUnfold,
-} from "react-icons/ai";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { useSidebarContext } from "../../context/SidebarContext";
 import { useTimeInterval } from "../../context/TimeIntervalContext";
 import { usePathname } from "next/navigation";
-import { useDarkMode } from "@/app/layout";
-import { motion } from "framer-motion";
 import { PiMoonStars } from "react-icons/pi";
 
-const Navbar = ({ isDark, setIsDark }) => {
+interface NavbarProps {
+  isDark: string;
+  setIsDark: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isDark, setIsDark }) => {
   const { user, handleSignOut } = useAuth();
   const { timeInterval, setTimeInterval } = useTimeInterval();
   const { isCollapsed, setCollapsed, width } = useSidebarContext();
@@ -106,7 +79,7 @@ const Navbar = ({ isDark, setIsDark }) => {
             <ul
               id="nav-dropdown"
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 dark:bg-primary dark:text-accent"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-base-100 rounded-box w-52  dark:bg-gray-900 shadow-md  dark:text-accent "
             >
               <li>
                 <a>Profile</a>

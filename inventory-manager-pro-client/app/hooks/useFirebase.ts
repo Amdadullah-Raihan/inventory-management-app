@@ -7,13 +7,32 @@ import {
   signInWithPopup,
   signOut,
   updatePassword,
+  Auth,
+  User,
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import initializeAuthentication from "@/public/firebase/firebase.init";
 
-const useFirebase = () => {
-  const [user, setUser] = useState({});
+export interface FirebaseHook {
+  user: User | {};
+  setUser: React.Dispatch<React.SetStateAction<User | {}>>;
+  error: string;
+  handleGoogleSignIn: () => Promise<void>;
+  handleEmailSignIn: (email: string, password: string) => void;
+  handleUpdatePassword: (newPassword: string) => void;
+  handleSignOut: () => void;
+  isLoading: boolean;
+}
+
+// Log User function
+const logUser = (firebaseHook: FirebaseHook) => {
+  const { user } = firebaseHook;
+  console.log("User:", user);
+};
+
+const useFirebase = (): FirebaseHook => {
+  const [user, setUser] = useState<User | {}>({});
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -21,34 +40,38 @@ const useFirebase = () => {
   // Initialize authentication
   initializeAuthentication();
   const googleProvider = new GoogleAuthProvider();
-  const auth = getAuth();
+  const auth: Auth = getAuth();
 
   // Handle Google sign-in
-  const handleGoogleSignIn = () => {
-    return signInWithPopup(auth, googleProvider);
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  // Function to hanlde login with email and password
-  const handleEmailSignIn = (email, password) => {
+  // Function to handle login with email and password
+  const handleEmailSignIn = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
       })
-      .then((error) => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   };
 
-  // Function to hanlde update password
-  const handleUpdatePassword = (newPassword) => {
-    updatePassword(auth.currentUser, newPassword)
+  // Function to handle update password
+  const handleUpdatePassword = (newPassword: string) => {
+    updatePassword(auth.currentUser!, newPassword)
       .then((result) => {
         console.log(result);
         alert("Updated password");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -81,6 +104,8 @@ const useFirebase = () => {
       unsubscribe();
     };
   }, [auth]);
+
+  console.log("user", user);
 
   return {
     user,

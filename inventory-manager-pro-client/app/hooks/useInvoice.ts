@@ -4,6 +4,39 @@ import { useAuth } from "../context/AuthContext";
 import useApiUrl from "./useApiUrl";
 import axios from "axios";
 
+interface CustomerDetails {
+  customerName: string;
+  customerAddress: string;
+  customerPhoneNo: string;
+  customerEmail: string;
+}
+
+interface ProductDetails {
+  productName: string;
+  warranty: string;
+  quantity: number;
+  unitPrice: number;
+}
+
+interface PaymentDetails {
+  subtotal: number;
+  discount: number;
+  total: number;
+  totalPaid: number;
+  totalDue: number;
+}
+
+export interface Invoice {
+  userEmail: string;
+  invoiceNumber: string;
+  issuedDate: string;
+  customerDetails: CustomerDetails;
+  productDetails: {
+    products: ProductDetails[];
+  };
+  paymentDetails: PaymentDetails;
+}
+
 const useInvoice = () => {
   const { user } = useAuth();
   const [apiUrl] = useApiUrl();
@@ -15,7 +48,7 @@ const useInvoice = () => {
   const currentMonth = currentDate.getMonth() + 1;
   const currentDay = currentDate.getDate();
 
-  const [invoice, setInvoice] = useState({
+  const [invoice, setInvoice] = useState<Invoice>({
     userEmail: "",
     invoiceNumber: "",
     issuedDate: issuedDate,

@@ -33,6 +33,7 @@
     "to-words": "^3.6.1"
   },
   "devDependencies": {
+    "@types/react": "18.2.47",
     "daisyui": "^3.9.3"
   }
 }

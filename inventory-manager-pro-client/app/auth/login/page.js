@@ -44,6 +44,7 @@ const Login = () => {
   useEffect(() => {
     if (user?.email) {
       router.push("/");
+      localStorage.setItem("isLoggedIn", true);
     }
   }, [router, user]);
 
