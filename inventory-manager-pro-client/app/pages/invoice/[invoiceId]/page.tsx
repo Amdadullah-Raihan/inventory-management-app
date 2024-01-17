@@ -22,9 +22,9 @@ interface SingleInvoiceProps {}
 const SingleInvoice: React.FC<SingleInvoiceProps> = () => {
   const apiUrl = useApiUrl();
   const { invoiceId } = useParams();
-  const [singleInvoice, setSingleInvoice] = useState<Invoice>();
+  const [singleInvoice, setSingleInvoice] = useState<Invoice>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const invoiceRef = useRef<any>(null);
+  const invoiceRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsLoading(true);

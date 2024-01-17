@@ -1,6 +1,7 @@
 // AuthContextProvider.tsx
 import React, { createContext, useContext } from "react";
 import useFirebase, { FirebaseHook } from "../hooks/useFirebase";
+import firebase from "firebase/app";
 
 interface AuthContextType extends FirebaseHook {}
 

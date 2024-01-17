@@ -90,12 +90,12 @@ const useInvoice = () => {
         setInvoice((prevInvoice) => ({
           ...prevInvoice,
           invoiceNumber: newInvoiceNumber,
-          userEmail: user.email,
+          userEmail: user?.email,
         }));
       }
     });
   }, [
-    user.email,
+    user?.email,
     apiUrl,
     invoice.invoiceNumber,
     currentYear,

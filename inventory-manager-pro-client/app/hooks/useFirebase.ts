@@ -14,6 +14,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import initializeAuthentication from "@/public/firebase/firebase.init";
 
+interface UserDetails extends User {
+  email: string;
+}
+
 export interface FirebaseHook {
   user: User | {};
   setUser: React.Dispatch<React.SetStateAction<User | {}>>;
@@ -25,17 +29,13 @@ export interface FirebaseHook {
   isLoading: boolean;
 }
 
-// Log User function
-const logUser = (firebaseHook: FirebaseHook) => {
-  const { user } = firebaseHook;
-  console.log("User:", user);
-};
-
 const useFirebase = (): FirebaseHook => {
   const [user, setUser] = useState<User | {}>({});
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
+  console.log(user);
 
   // Initialize authentication
   initializeAuthentication();

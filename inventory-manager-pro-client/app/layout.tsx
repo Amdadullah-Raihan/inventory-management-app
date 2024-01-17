@@ -1,4 +1,5 @@
 "use client";
+import "./globals.css";
 import React, { useEffect, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import Navbar from "./components/Navbar/Navbar";

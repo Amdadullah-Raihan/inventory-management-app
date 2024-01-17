@@ -61,3 +61,7 @@ thead tr {
     justify-content: space-between;
   }
 }
+
+body {
+  background-color: black;
+}

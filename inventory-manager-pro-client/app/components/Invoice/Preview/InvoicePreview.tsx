@@ -41,7 +41,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({
             visible={true}
           />
         </div>
-      ) : invoice.customerDetails ? (
+      ) : invoice?.customerDetails ? (
         <div className="w-full md:flex gap-x-4 gap-y-2">
           <div
             ref={invoiceRef}

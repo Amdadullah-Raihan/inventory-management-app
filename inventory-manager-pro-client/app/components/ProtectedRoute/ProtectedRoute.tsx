@@ -1,7 +1,7 @@
 "use client";
 
 import useFirebase from "@/app/hooks/useFirebase";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 
