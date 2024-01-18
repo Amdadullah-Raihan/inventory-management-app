@@ -10,16 +10,13 @@ import {
   Auth,
   User,
 } from "firebase/auth";
+import firebase from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import initializeAuthentication from "@/public/firebase/firebase.init";
 
-interface UserDetails extends User {
-  email: string;
-}
-
 export interface FirebaseHook {
-  user: User | {};
+  user: {};
   setUser: React.Dispatch<React.SetStateAction<User | {}>>;
   error: string;
   handleGoogleSignIn: () => Promise<void>;
@@ -28,14 +25,13 @@ export interface FirebaseHook {
   handleSignOut: () => void;
   isLoading: boolean;
 }
+console.log("log firebase", firebase);
 
 const useFirebase = (): FirebaseHook => {
   const [user, setUser] = useState<User | {}>({});
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
-  console.log(user);
 
   // Initialize authentication
   initializeAuthentication();
@@ -105,7 +101,7 @@ const useFirebase = (): FirebaseHook => {
     };
   }, [auth]);
 
-  console.log("user", user);
+  // console.log("user", user);
 
   return {
     user,

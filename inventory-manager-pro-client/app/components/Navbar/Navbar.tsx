@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, setIsDark }) => {
   const pathname = usePathname();
 
   return (
-    <div className="navbar justify-between bg-base-100 shadow-b-md lg:dark:bg-secondary dark:bg-neutral">
+    <div className="navbar justify-between bg-base-100  shadow-b-md lg:dark:bg-secondary dark:bg-neutral">
       <div>
         <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
           <AiOutlineMenuUnfold className="bg-primary p-1 w-8 h-8 rounded-lg text-2xl mr-2 text-accent" />
@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, setIsDark }) => {
         {user.email && pathname === "/" && (
           <div className="dropdown dropdown-end mr-2 ">
             <select
-              className="select  select-bordered select-sm w-full  max-w-xs dark:bg-secondary dark:text-accent         dark:border-gray-500 ml-1"
+              className="select  select-bordered select-sm w-full  max-w-xs dark:bg-secondary dark:text-accent dark:border-gray-500 ml-1"
               value={timeInterval}
               onChange={(e) => setTimeInterval(e.target.value)}
             >
@@ -67,7 +67,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, setIsDark }) => {
         }
 
         {user.email ? (
-          <div className="dropdown dropdown-end ">
+          <div className="dropdown dropdown-end z-[50]">
             <label
               tabIndex={0}
               className="btn border-none btn-ghost  btn-circle avatar"
